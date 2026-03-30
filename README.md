@@ -12,8 +12,10 @@ A professional, single-file TypeScript SDK library for CoCart and WooCommerce He
 
 ## Installation
 
+Install directly from GitHub:
+
 ```bash
-npm install cocart-api-sdk
+npm install https://github.com/ehtishamnaveed/woo-headless-storefront
 ```
 
 ## Quick Start

@@ -1,69 +1,68 @@
-# @Ehtisham/headless-api-sdk
+# CoCart API SDK
 
-Plug and play SDK library for CoCart and WooCommerce Headless. 
-This SDK provides a clean interface for interacting with your WooCommerce store's products, cart, and authentication.
+A professional, single-file TypeScript SDK library for CoCart and WooCommerce Headless. Designed for simplicity, performance, and modern development workflows.
+
+## Features
+
+- **Class-based API**: Clean, intuitive interface for all CoCart operations.
+- **Zero Configuration**: Just provide your site URL.
+- **Persistent Sessions**: Automatic handling of cart keys and JWT authentication tokens.
+- **Fully Typed**: Comprehensive TypeScript interfaces for products, cart data, and responses.
+- **Cache Ready**: Fully compatible with the CoCart Products Cache plugin for <10ms response times.
 
 ## Installation
 
 ```bash
-npm install @ehtisham/headless-api-sdk
+npm install cocart-api-sdk
 ```
 
-## Usage
+## Quick Start
 
-```javascript
-import createApiClient from "@ehtisham/headless-api-sdk";
+```typescript
+import { CoCartSDK } from 'cocart-api-sdk';
 
-const api = createApiClient("https://your-wordpress-site.com");
+const sdk = new CoCartSDK({
+    siteURL: 'https://your-store.com'
+});
 
-// Get Products
-const products = await api.getProducts();
-if (products.success) {
-  console.log(products.data);
+// Fetch products (Instant with Products Cache plugin)
+const response = await sdk.getProducts();
+if (response.success) {
+    console.log(response.data);
 }
 
-// Add to Cart
-await api.addToCart("123", "1");
+// Add to cart
+await sdk.addToCart('123', '2');
 
-// Get Cart
-const cart = await api.getCart();
+// Get cart details
+const cart = await sdk.getCart();
 
-// Authentication
-await api.login("username", "password");
-const user = api.getStoredUser();
+// Secure Checkout
+const checkoutUrl = sdk.getCheckoutUrl();
+window.location.href = checkoutUrl;
 ```
 
-## API Reference
+## API Documentation
 
-### `getProducts()`
-Fetches all products from the cache or live CoCart API.
+### Authentication
+- `login(username, password)`: Authenticate and store JWT token.
+- `logout()`: Clear session and token.
+- `getAuthenticatedUser()`: Retrieve stored user data.
 
-### `getCart()`
-Fetches the current cart data.
+### Products
+- `getProducts(params?)`: Get all products with optional filters.
+- `getProduct(id)`: Get detailed data for a specific product.
 
-### `addToCart(id, quantity)`
-Adds a product to the cart.
+### Cart
+- `getCart()`: Retrieve current cart contents and totals.
+- `addToCart(productId, quantity)`: Add a new item to the cart.
+- `updateCartItem(itemKey, quantity)`: Update quantity for an item.
+- `removeCartItem(itemKey)`: Delete an item from the cart.
+- `clearCart()`: Empty the entire cart.
 
-### `updateItem(item_key, quantity)`
-Updates the quantity of an item in the cart.
+### Checkout
+- `getCheckoutUrl()`: Generate a direct link to the WooCommerce checkout with the cart pre-loaded.
 
-### `removeItem(item_key)`
-Removes an item from the cart.
+## License
 
-### `clearCart()`
-Clears the entire cart.
-
-### `registerCustomer(data)`
-Registers a new customer.
-
-### `login(username, password)`
-Logs in a customer and stores the JWT token.
-
-### `logout()`
-Logs out the customer and clears the stored session.
-
-### `getStoredUser()`
-Returns the currently logged-in user data.
-
-### `getCheckoutUrl()`
-Returns the URL to the WooCommerce checkout page with the cart pre-loaded.
+MIT

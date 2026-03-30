@@ -1,5 +1,5 @@
 {
-  "name": "cocart-api-sdk",
+  "name": "woo-headless-storefront",
   "version": "1.0.0",
   "description": "A professional, single-file SDK library for CoCart and WooCommerce Headless.",
   "main": "dist/index.js",

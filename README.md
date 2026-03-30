@@ -10,6 +10,14 @@ A professional, single-file TypeScript SDK library for CoCart and WooCommerce He
 - **Fully Typed**: Comprehensive TypeScript interfaces for products, cart data, and responses.
 - **Cache Ready**: Fully compatible with the CoCart Products Cache plugin for <10ms response times.
 
+## Performance Optimization
+
+For maximum performance, it is highly recommended to use this SDK alongside the [CoCart Products Cache](https://github.com/ehtishamnaveed/cocart-products-cache) plugin.
+
+- **Fastest Responses**: Reduces product fetch times from ~500ms to **<10ms**.
+- **Zero DB Queries**: Serves products directly from a static JSON file.
+- **Improved UX**: Instant product loading for your headless storefront.
+
 ## Installation
 
 Install directly from GitHub:
